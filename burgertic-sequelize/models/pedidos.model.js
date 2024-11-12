@@ -1,9 +1,9 @@
-import { DataTypes, Model } from "sequelize";
+import { DataTypes, Model } from "sequelize"; 
 import { sequelize } from "../db.js";
 
-export class pedidos extends Model {}
+export class Pedido extends Model {}
 
-pedidos.init(
+Pedido.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -12,19 +12,22 @@ pedidos.init(
         },
         id_usuario: {
             type: DataTypes.INTEGER,
-            ForeignKey : true
+            references: {
+                model: 'usuarios', 
+                key: 'id', 
+            },
         },
         fecha: {
-            type: DataTypes.date,
+            type: DataTypes.DATE,
         },
         estado: {
-            type: DataTypes.VARCHAR(50) // hacer lo de pendiente aceptado en camino y entregado
-
+            type: DataTypes.STRING(50), 
         },
     },
     {
         sequelize,
-        modelName: "pedidos",
+        modelName: "Pedido", 
         timestamps: false,
     }
 );
+
