@@ -66,7 +66,7 @@ const getPedidosByUser = async (idUsuario) => {
         })
     );
 };
-
+    
 // Crear un nuevo pedido
 const createPedido = async (idUsuario, platos) => {
     // Validar que todos los platos existen
