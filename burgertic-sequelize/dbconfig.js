@@ -1,5 +1,5 @@
 import pg from 'pg'
-
+import "dotenv/config";
 
 const { Pool } = pg;
 
@@ -13,3 +13,16 @@ export const pool = new Pool({
     ssl: true
 });
 
+
+import { Sequelize } from "sequelize";
+
+export const sequelize = new Sequelize(
+    process.env = "postgresql//neondb_owner:Ojw2P9spnKCV@ep-delicate-field-a55rp2zd.us-east-2.aws.neon.tech/neondb?sslmode=require"
+);
+
+try {
+    await sequelize.authenticate();
+    console.log("Connection has been established successfully.");
+} catch (error) {
+    console.error("Unable to connect to the database:", error);
+}
