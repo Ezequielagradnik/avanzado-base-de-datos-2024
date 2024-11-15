@@ -19,34 +19,16 @@ const getPlatosByPedido = async (idPedido) => {
 };
 
 // Obtener todos los pedidos
-const getPedidos = async () => {
-    const pedidos = await Pedido.findAll();
-
-    if (!pedidos.length) return [];
-
-    return await Promise.all(
-        pedidos.map(async (pedido) => {
-            const platos = await getPlatosByPedido(pedido.id);
-            return {
-                ...pedido.toJSON(),
-                platos,
-            };
-        })
-    );
-};
+const getPedidos = async () => await Pedido.findAll();
 
 // Obtener un pedido específico por ID
-const getPedidoById = async (id) => {
-    const pedido = await Pedido.findByPk(id);
-
-    if (!pedido) return null;
-
-    const platos = await getPlatosByPedido(id);
-    return {
-        ...pedido.toJSON(),
-        platos,
-    };
-};
+const getPedidoById = async (id) => 
+await Pedido.findAll({
+    where: {
+        id:id,
+    }
+})
+ 
 
 // Obtener pedidos de un usuario específico
 const getPedidosByUser = async (idUsuario) => {

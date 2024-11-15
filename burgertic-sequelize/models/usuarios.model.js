@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import { sequelize } from "../db.js";  // Asegúrate de que el archivo 'db.js' tenga la configuración correcta de Sequelize
+import { sequelize } from "../dbconfig.js";  
 
 export class Usuario extends Model {}
 

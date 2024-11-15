@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import { sequelize } from "../db.js";  // Adjust the path to your sequelize instance as necessary
+import { sequelize } from "../dbconfig.js"; 
 
 export class Platoxpedido extends Model {}
 
