@@ -1,60 +1,45 @@
-import { config } from "../db.js";
-import pkg from "pg";
-const { Client } = pkg;
+import { config } from "../db.js"; 
+import pg from "pg";
+import { Usuario } from "../models/usuarios.model.js";
 
+const { Client } = pg;
+
+// Obtener un usuario por su correo electrónico
 const getUsuarioByEmail = async (email) => {
-    const client = new Client(config);
-    await client.connect();
-
     try {
-        const { rows } = await client.query(
-            "SELECT * FROM usuarios WHERE email = $1",
-            [email]
-        );
-        if (rows.length < 1) return null;
-
-        await client.end();
-        return rows[0];
+        const usuario = await Usuario.findOne({ where: { email } });
+        return usuario; 
     } catch (error) {
-        await client.end();
-        throw error;
+        console.error("Error al obtener el usuario por email:", error);
+        throw error; 
     }
 };
 
+// Obtener un usuario por su ID
 const getUsuarioById = async (id) => {
-    const client = new Client(config);
-    await client.connect();
-
     try {
-        const { rows } = await client.query(
-            "SELECT * FROM usuarios WHERE id = $1",
-            [id]
-        );
-        if (rows.length < 1) return null;
-
-        await client.end();
-        return rows[0];
+        const usuario = await Usuario.findByPk(id);
+        return usuario; 
     } catch (error) {
-        await client.end();
-        throw error;
+        console.error("Error al obtener el usuario por ID:", error);
+        throw error; 
     }
 };
 
+// Crear un nuevo usuario
 const createUsuario = async (usuario) => {
-    const client = new Client(config);
-    await client.connect();
-
     try {
-        const { rows } = await client.query(
-            "INSERT INTO usuarios (nombre, apellido, email, password, admin) VALUES ($1, $2, $3, $4, false)",
-            [usuario.nombre, usuario.apellido, usuario.email, usuario.password]
-        );
-
-        await client.end();
-        return rows;
+        const nuevoUsuario = await Usuario.create({
+            nombre: usuario.nombre,
+            apellido: usuario.apellido,
+            email: usuario.email,
+            password: usuario.password,
+            admin: usuario.admin,
+        });
+        return nuevoUsuario; 
     } catch (error) {
-        await client.end();
-        throw error;
+        console.error("Error al crear el usuario:", error);
+        throw error; 
     }
 };
 
