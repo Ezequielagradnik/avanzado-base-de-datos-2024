@@ -1,10 +1,6 @@
-import pg from "pg";
-import { Pedido } from "../models/pedido.model.js"; 
-import { PedidoPlato } from "../models/pedidoplato.model.js";
-import { Plato } from "../models/plato.model.js";
-import { Usuario } from "../models/usuario.model.js";
-
-const { Client } = pg;
+import { Pedido } from "../models/pedidos.model.js";
+import { PedidoPlato } from "../models/platosxpedidos.model.js";
+import { Plato } from "../models/platos.model.js";
 
 const getPlatosByPedido = async (idPedido) => {
     const pedidoPlatos = await PedidoPlato.findAll({
@@ -93,6 +89,7 @@ const deletePedido = async (id) => {
 };
 
 export default {
+    getPlatosByPedido,
     getPedidos,
     getPedidoById,
     getPedidosByUser,

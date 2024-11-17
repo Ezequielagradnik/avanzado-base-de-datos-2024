@@ -1,7 +1,4 @@
 import { Plato } from "../models/platos.model.js";
-import pg from 'pg'
-
-const {Client} = 'pg'
 
 const getPlatos = async () => await Plato.findAll();
 

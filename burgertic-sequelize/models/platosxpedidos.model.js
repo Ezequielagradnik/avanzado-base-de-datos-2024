@@ -1,9 +1,9 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../dbconfig.js"; 
 
-export class Platoxpedido extends Model {}
+export class PedidoPlato extends Model {}
 
-Platoxpedido.init(
+PedidoPlato.init(
   {
     id: {
       type: DataTypes.INTEGER,

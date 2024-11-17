@@ -1,8 +1,4 @@
-import { config } from "../db.js"; 
-import pg from "pg";
 import { Usuario } from "../models/usuarios.model.js";
-
-const { Client } = pg;
 
 // Obtener un usuario por su correo electrónico
 const getUsuarioByEmail = async (email) => {
