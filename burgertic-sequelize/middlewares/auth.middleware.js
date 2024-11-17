@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import UsuariosService from "../services/usuarios.service.js";
 
-const SECRET_KEY = "LOHAGOPUBLICOPORQUEMEREDA"; // Ensure this is defined
+const SECRET_KEY = process.env.SECRET_KEY; // esta sí anda desde el .env, no sé por qué las de la DB no...
 
 export const verifyToken = async (req, res, next) => {
     if (!req.headers.authorization)
@@ -17,7 +17,7 @@ export const verifyToken = async (req, res, next) => {
             .json({ message: "Se necesita estar autenticado" });
 
     try {
-        const decoded = jwt.verify(token, SECRET_KEY); // Use the secret key
+        const decoded = jwt.verify(token, SECRET_KEY);
 
         if (!decoded.id)
             return res.status(401).json({ message: "Token inválido" });
@@ -44,7 +44,7 @@ export const verifyAdmin = async (req, res, next) => {
             .json({ message: "Se necesita estar autenticado" });
 
     try {
-        const decoded = jwt.verify(token, SECRET_KEY); // Use the secret key
+        const decoded = jwt.verify(token, SECRET_KEY);
 
         if (!decoded.id)
             return res.status(401).json({ message: "Token inválido" });
