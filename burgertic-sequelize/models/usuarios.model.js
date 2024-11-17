@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import { sequelize } from "../dbconfig.js";  
+import { sequelize } from "../dbconfig.js";
 
 export class Usuario extends Model {}
 
@@ -11,26 +11,27 @@ Usuario.init(
             primaryKey: true,
         },
         nombre: {
-            type: DataTypes.STRING(50)
+            type: DataTypes.STRING,
         },
         apellido: {
-            type: DataTypes.STRING(50)
+            type: DataTypes.STRING,
         },
         email: {
-            type: DataTypes.STRING(256),
-            unique: true, 
+            type: DataTypes.STRING,
+            unique: true,
         },
         password: {
-            type: DataTypes.STRING(256)  
+            type: DataTypes.STRING,
         },
         admin: {
             type: DataTypes.BOOLEAN,
-            defaultValue: false,  
+            defaultValue: false,
         },
     },
     {
         sequelize,
-        modelName: "Usuario",  
-        timestamps: true,  
+        modelName: "Usuario",
+        tableName: "usuarios",
+        timestamps: false,
     }
 );
