@@ -1,6 +1,5 @@
 import pg from 'pg';
 import "dotenv/config";
-import { Sequelize } from "sequelize";
 
 const { Pool } = pg;
 
@@ -13,20 +12,10 @@ export const pool = new Pool({
     ssl: true
 });
 
+import { Sequelize } from "sequelize";
+
 export const sequelize = new Sequelize(
-    'neondb', // database name
-    'neondb_owner', // username
-    'Ojw2P9spnKCV', // password
-    {
-        host: 'ep-delicate-field-a55rp2zd.us-east-2.aws.neon.tech',
-        dialect: 'postgres',
-        dialectOptions: {
-            ssl: {
-                require: true,
-                rejectUnauthorized: false // You might need to adjust this based on your SSL configuration
-            }
-        }
-    }
+    "postgres://neondb_owner:Ojw2P9spnKCV@ep-delicate-field-a55rp2zd.us-east-2.aws.neon.tech:5432/neondb?sslmode=require"
 );
 
 try {
