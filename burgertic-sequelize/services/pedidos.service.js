@@ -1,5 +1,5 @@
 import { Pedido } from "../models/pedidos.model.js";
-import { PedidoPlato } from "../models/platosxpedidos.model.js";
+import { PedidoPlato } from "../models/pedidos_platos.model.js";
 import { Plato } from "../models/platos.model.js";
 
 const getPlatosByPedido = async (idPedido) => {
